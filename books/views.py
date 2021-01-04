@@ -4,4 +4,4 @@ def home(request):
 	context = {
 			'application': 'books'
 	}
-	return render(request, 'home/base.html', context=context)
+	return render(request, 'home/under_construction.html', context=context)
