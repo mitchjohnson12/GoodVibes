@@ -1,0 +1,13 @@
+{% extends "home/base.html" %}
+{% block content %}
+	<div class = "container">
+		<div class="content-section">
+			<h1>{{ genre.name }}</h1>
+		</div>
+		{% for album in album_list %}
+		<div class="content-section">
+			<p>{{ album.primary_artist }} - {{ album.title }} ({{ album.year }})</p>
+		</div>
+	{% endfor %}
+	</div>
+{% endblock content %}

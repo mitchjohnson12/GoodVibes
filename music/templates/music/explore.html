@@ -1,0 +1,32 @@
+{% extends "home/base.html" %}
+{% block content %}
+<div class="container">
+<div class="container-fluid text-center bg-grey">
+  <h2 style="text-align:center">Explore</h2>
+  <h4 style="text-align:center">Choose a genre</h4>
+  <div class="row text-center">
+    
+    {% for genre in genre_list %}
+    <div class="col-sm-4">
+      <div class="img-thumbnail">
+        <a href="{{ genre.id }}">
+          <img src="{{ genre.image.url }}" alt="{{ genre.name }}" class="img-fluid">
+        </a>
+        <p><strong>{{ genre.name }}</strong></p>
+        <p>Explore the {{ genre.name }} library</p>
+      </div>
+    </div>
+    {% endfor %}
+
+
+  </div>
+</div>
+<!--
+  <ul>
+    {% for count in genre_count %}
+    <li>{{count.genre}}: {{count.count}}</li>
+    {% endfor %}
+  </ul>
+-->
+</div>
+{% endblock content %}

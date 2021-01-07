@@ -49,9 +49,22 @@
 				<li class="nav-item">
 					<a href="{{movies_url}}" class="nav-link">Movies</a>
 				</li>
-				<li class="nav-item">
+				<!--
+				<li class="nav-item dropdown">
 					<a href="{{music_url}}" class="nav-link">Music</a>
 				</li>
+				-->
+		      	<li class="nav-item dropdown">
+				    <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+				    	Music
+				    </a>
+				    <div class="dropdown-menu" aria-labelledby="navbarDropdown">
+						<a class="dropdown-item" href="{{music_url}}">Home</a>
+						<a class="dropdown-item" href="{% url 'music-explore' %}">Explore</a>
+						<div class="dropdown-divider"></div>
+						<a class="dropdown-item" href="#">Something else here</a>
+				    </div>
+			    </li>
 			</ul>
 			<ul class="nav navbar-nav navbar-right">
 				{% if user.is_authenticated %}

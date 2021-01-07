@@ -1,0 +1,10 @@
+{% extends "home/base.html" %}
+{% block content %}
+	<div class="container">
+		<ul>
+		{% for genre in genre_list %}
+			<li><a href="{{ genre.id }}">{{ genre.name }}</a></li>
+		{% endfor %}
+		</ul>
+	</div>
+{% endblock content %} 	
