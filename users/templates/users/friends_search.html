@@ -1,0 +1,30 @@
+{% extends "home/base.html" %}
+{% block content %}
+<div class="container">
+		
+	{% for user, button_type, button_caption, button_url in context_list %}
+	<div class="content-section">
+		<div class="media">
+			<img class="rounded-circle account-img" src="{{ user.profile.image.url }}">
+			<div class="media-body">
+				<div class="col-8">
+					<h2 class="account-heading">{{ user.first_name }} {{ user.last_name}} </h2>
+					<h4>@<a href="/users/{{user.id}}">{{user.username}}</a></h4>
+					<!--<p class="text-secondary">{{ user.email }}</p>-->
+				</div>
+				<div class="col-4">
+					<button type="button" class="btn btn-outline-{{button_type}} btn-lg">
+						{% if button_url %}
+						<a href="{{button_url}}{{user.id}}">{{button_caption}}</a>
+						{% else %}
+						{{button_caption}}
+						{% endif %}
+					</button>
+				</div>
+			</div>
+		</div>
+	</div>
+	{% endfor %}
+	
+</div>
+{% endblock content %}

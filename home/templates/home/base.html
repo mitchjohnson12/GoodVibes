@@ -40,9 +40,26 @@
 
 		<div class="collapse navbar-collapse" id="navbarMenu">
 			<ul class="navbar-nav mr-auto">
+				<!--
 				<li class="nav-item">
 					<a href="{{home_url}}" class="nav-link">Home</a>
 				</li>
+				-->
+				<li class="nav-item dropdown">
+				    <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+				    	Home
+				    </a>
+				    <div class="dropdown-menu" aria-labelledby="navbarDropdown">
+						<a class="dropdown-item" href="{{home_url}}">Home</a>
+						{% if user.is_authenticated %}
+						<a class="dropdown-item" href="{% url 'users-myfriends' %}">My Friends</a>
+						<a class="dropdown-item" href="{% url 'users-friendsearch' %}">Find Friends</a>
+						{% endif %}
+						<div class="dropdown-divider"></div>
+						<a class="dropdown-item" href="#">Something else here</a>
+				    </div>
+			    </li>
+
 				<li class="nav-item">
 					<a href="{{books_url}}" class="nav-link">Books</a>
 				</li>

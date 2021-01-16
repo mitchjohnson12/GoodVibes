@@ -1,0 +1,53 @@
+{% extends "home/base.html" %}
+{% block content %}
+<div class="container">
+	<div class="content-section">
+		<h2>Friends</h2>
+
+		{% for friend in friends %}
+		<div class="media">
+			<img class="rounded-circle account-img" src="{{ friend.image.url }}">
+			<div class="media-body">
+				<h2 class="account-heading">{{ friend.user.first_name }} {{ friend.user.last_name}} (@{{ friend.user.username }})</h2>
+				<p class="text-secondary">{{ friend.user.email }}</p>
+			</div>
+		</div>
+		{% endfor %}
+
+	</div>
+	<div class="content-section">
+
+	{% if received_friend_requests %}
+		<h1>Friend Requests Received</h1>
+		
+		{% for rec_req in received_friend_requests %}
+		<div class="media">
+			<img class="rounded-circle account-img" src="{{ rec_req.from_user.profile.image.url }}">
+			<div class="media-body">
+				<h2 class="account-heading">{{ rec_req.from_user.first_name }} {{ friend.user.last_name}} (@{{ rec_req.from_user.username }})</h2>
+				<p class="text-secondary">{{ rec_req.from_user.email }}</p>
+			</div>
+		</div>
+		{% endfor %}
+		{% else %}
+		<h2>No new friend requests</h2>
+	{% endif %}
+	</div>
+	
+	{% if sent_friend_requests %}
+	<div class="content-section">
+		<h2>Sent Friend Requests</h2>
+		{% for sent_req in sent_friend_requests %}
+		<div class="media">
+			<img class="rounded-circle account-img" src="{{ sent_req.to_user.profile.image.url }}">
+			<div class="media-body">
+				<h2 class="account-heading">{{ sent_req.to_user.first_name }} {{ sent_req.to_user.last_name}} (@{{ sent_req.to_user.username }})</h2>
+				<p class="text-secondary">{{ sent_req.to_user.email }}</p>
+			</div>
+		</div>
+		{% endfor %}
+		{% endif %}
+
+	</div>
+</div>
+{% endblock content %}

@@ -25,6 +25,8 @@ urlpatterns = [
     path('books/', include('books.urls')),
 	path('movies/', include('movies.urls')),
 	path('music/', include('music.urls')),
+    path('users/', include('users.urls')),
+    path('friendsearch/', user_views.friends_search, name='users-friendsearch'),
     path('admin/', admin.site.urls),
     path('register/', user_views.register, name='register'),
     path('profile/', user_views.profile, name='profile'),
