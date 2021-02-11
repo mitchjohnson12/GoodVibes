@@ -1,0 +1,41 @@
+{% extends "home/base.html" %}
+{% block content %}
+<div class="container">
+	<h2>My Music</h2>
+	{% if ratings %}
+		{% for rating in ratings %}
+		<div class="content-section">
+			<div class="row">
+				<div class="col sm">
+					{% for _ in rating.stars %}
+						<span class="fa fa-star checked star-btn"></span>
+					{% endfor %}
+					{% for _ in rating.blankstars %}
+						<span class="fa fa-star star-btn"></span>
+					{% endfor %}
+					<p>{{ rating.album }}</p>
+				</div>
+				<div class="col sm">
+					<p> {{ rating.notes }} </p>
+				</div>
+				<div class="col sm">
+					<a href="/music/album/{{ rating.album.id }}">album details</a> <br>
+					<a href="#">artist details</a>
+				</div>
+
+			</div>
+		</div>
+	 	{% endfor %}
+	{% else %}
+		<h2>You have not rated any albums yet</h2>
+	{% endif %}
+
+	</div>
+
+
+
+
+
+
+</div>
+{% endblock content %}

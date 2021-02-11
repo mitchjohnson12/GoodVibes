@@ -6,7 +6,15 @@
 		</div>
 		{% for album in album_list %}
 		<div class="content-section">
-			<p>{{ album.primary_artist }} - {{ album.title }} ({{ album.year }})</p>
+			<div class="row">
+				<div class="col md-auto">
+					<p>{{ album.primary_artist }} - {{ album.title }} ({{ album.year }})</p>
+				</div>
+				<div class="col md-3">
+					<a href="/music/album/{{ album.id }}">album details</a> <br>
+					<a href="#">artist details</a>
+				</div>
+			</div>
 		</div>
 	{% endfor %}
 	</div>

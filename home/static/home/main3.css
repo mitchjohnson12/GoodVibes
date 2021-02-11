@@ -3,6 +3,7 @@
 
 
 /* Set height to 100% for body and html to enable the background image to cover the whole page: */
+
 body, html {
   height: 100%;
 }
@@ -16,6 +17,22 @@ body {
 
 ul {
   margin: 0;
+}
+
+
+.star-btn {
+  background-color: inherit !important;
+  border: 0 !important;
+  color: gainsboro;
+  outline: none !important;
+}
+
+.checked {
+      color: steelblue;
+}
+
+.unchecked {
+      color: gainsboro;
 }
 
 .bg-steel {
@@ -129,6 +146,9 @@ a.article-title:hover {
   left: 50%;
   transform: translate(-50%, -50%);
   text-align: center;
+}
+
+
 /*  margin: 30px;
   background-color: #ffffff;
   border: 1px solid black;

@@ -1,5 +1,7 @@
 from django.db import models
 from django.contrib.auth.models import User
+from django.core.validators import MaxValueValidator, MinValueValidator
+from music.models import Album
 from PIL import Image
 
 
@@ -28,3 +30,18 @@ class FriendRequest(models.Model):
 
 	def __str__(self):
 		return f'from {self.from_user} to {self.to_user}'
+
+
+class AlbumRating(models.Model):
+	profile = models.ForeignKey(Profile, on_delete=models.CASCADE)
+	album = models.ForeignKey(Album, on_delete=models.CASCADE)
+	star_review = models.IntegerField(
+		null=True,
+		validators=[
+			MaxValueValidator(5),
+			MinValueValidator(1)
+		]
+	)
+	date_first_added = models.DateTimeField(auto_now_add=True)
+	private_notes = models.TextField(max_length=1000)
+

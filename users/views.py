@@ -5,6 +5,9 @@ from django.contrib.auth.models import User
 from .forms import UserRegisterForm, UserUpdateForm, ProfileUpdateForm
 from .models import Profile, FriendRequest
 
+###
+# Logins/Proviles
+###
 def register(request):
 	if request.method =='POST':
 		form = UserRegisterForm(request.POST)
@@ -45,6 +48,9 @@ def profile(request):
 	return render(request, 'users/profile.html', context)
 
 
+###
+# Friends Pages
+###
 @login_required
 def friends_search(request):
 	user_list = User.objects.exclude(id=request.user.id).order_by('last_name', 'first_name', 'username')
@@ -94,6 +100,28 @@ def profile_pk(request, pk):
 	return render(request, 'users/profile_pk.html', context)
 
 
+
+
+@login_required
+def my_friends(request):
+	sent_friend_requests = FriendRequest.objects.filter(from_user=request.user)
+	received_friend_requests = FriendRequest.objects.filter(to_user=request.user)
+	friends = request.user.profile.friends.all()
+
+	# TODO - Add stuff for buttons
+
+	context = {
+		'friends': friends,
+		'sent_friend_requests': sent_friend_requests,
+		'received_friend_requests': received_friend_requests
+	}
+
+	return render(request, 'users/my_friends.html', context)
+
+
+###
+# Friend Requests
+###
 # Functions for sending friend requests
 @login_required
 def send_friend_request(request, pk):
@@ -145,19 +173,3 @@ def delete_friend_request(request, pk):
 	friend_request.delete()
 	return redirect('home-homepage')
 
-
-@login_required
-def my_friends(request):
-	sent_friend_requests = FriendRequest.objects.filter(from_user=request.user)
-	received_friend_requests = FriendRequest.objects.filter(to_user=request.user)
-	friends = request.user.profile.friends.all()
-
-	# TODO - Add stuff for buttons
-
-	context = {
-		'friends': friends,
-		'sent_friend_requests': sent_friend_requests,
-		'received_friend_requests': received_friend_requests
-	}
-
-	return render(request, 'users/my_friends.html', context)
